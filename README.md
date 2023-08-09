@@ -14,7 +14,7 @@
 
 ```php
 <?php
-use Graze\GuzzleHttp\JsonRpc\Client;
+use Sword\JsonRpc\Client;
 
 // Create the client
 $client = Client::factory('http://localhost:8000');
@@ -38,7 +38,7 @@ $client->sendAll([
 
 ```php
 <?php
-use Graze\GuzzleHttp\JsonRpc\Client;
+use Sword\JsonRpc\Client;
 
 // Create the client
 $client = Client::factory('http://localhost:8000');
@@ -72,8 +72,8 @@ option `[rpc_error => true]` in the client constructor.
 
 ```php
 <?php
-use Graze\GuzzleHttp\JsonRpc\Client;
-use Graze\GuzzleHttp\JsonRpc\Exception\RequestException;
+use Sword\JsonRpc\Client;
+use Sword\JsonRpc\Exception\RequestException;
 
 // Create the client with the `rpc_error`
 $client = Client::factory('http://localhost:8000', ['rpc_error'=>true]);

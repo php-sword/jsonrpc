@@ -1,5 +1,5 @@
 {
-    "name": "graze/guzzle-jsonrpc",
+    "name": "php-sword/guzzle-jsonrpc",
     "description": "JSON-RPC 2.0 client for Guzzle",
     "keywords": ["guzzle", "guzzlehttp", "http", "json", "json-rpc", "jsonrpc", "ring", "rpc"],
     "homepage": "https://github.com/graze/guzzle-jsonrpc",
@@ -13,7 +13,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "Graze\\GuzzleHttp\\JsonRpc\\": "src"
+            "Sword\\JsonRpc\\": "src"
         }
     },
     "require": {

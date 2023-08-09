@@ -12,11 +12,11 @@
  * @link http://github.com/graze/guzzle-jsonrpc
  */
 
-namespace Graze\GuzzleHttp\JsonRpc\Exception;
+namespace Sword\JsonRpc\Exception;
 
 use Exception;
-use Graze\GuzzleHttp\JsonRpc\Message\RequestInterface;
-use Graze\GuzzleHttp\JsonRpc\Message\ResponseInterface;
+use Sword\JsonRpc\Message\RequestInterface;
+use Sword\JsonRpc\Message\ResponseInterface;
 use GuzzleHttp\BodySummarizerInterface;
 use GuzzleHttp\Exception\RequestException as HttpRequestException;
 use Psr\Http\Message\RequestInterface as HttpRequestInterface;

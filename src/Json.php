@@ -1,8 +1,8 @@
 <?php
 
-namespace Graze\GuzzleHttp\JsonRpc;
+namespace Sword\JsonRpc;
 
-use Graze\GuzzleHttp\JsonRpc\Exception\JsonDecodeException;
+use Sword\JsonRpc\Exception\JsonDecodeException;
 
 class Json
 {

@@ -12,9 +12,9 @@
  * @link http://github.com/graze/guzzle-jsonrpc
  */
 
-namespace Graze\GuzzleHttp\JsonRpc\Message;
+namespace Sword\JsonRpc\Message;
 
-use Graze\GuzzleHttp\JsonRpc\Json;
+use Sword\JsonRpc\Json;
 use GuzzleHttp\Psr7\Response as HttpResponse;
 
 class Response extends HttpResponse implements ResponseInterface

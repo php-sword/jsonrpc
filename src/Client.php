@@ -12,16 +12,16 @@
  * @link http://github.com/graze/guzzle-jsonrpc
  */
 
-namespace Graze\GuzzleHttp\JsonRpc;
+namespace Sword\JsonRpc;
 
-use Graze\GuzzleHttp\JsonRpc\Message\MessageFactory;
-use Graze\GuzzleHttp\JsonRpc\Message\MessageFactoryInterface;
-use Graze\GuzzleHttp\JsonRpc\Message\RequestInterface;
-use Graze\GuzzleHttp\JsonRpc\Message\ResponseInterface;
-use Graze\GuzzleHttp\JsonRpc\Middleware\RequestFactoryMiddleware;
-use Graze\GuzzleHttp\JsonRpc\Middleware\RequestHeaderMiddleware;
-use Graze\GuzzleHttp\JsonRpc\Middleware\ResponseFactoryMiddleware;
-use Graze\GuzzleHttp\JsonRpc\Middleware\RpcErrorMiddleware;
+use Sword\JsonRpc\Message\MessageFactory;
+use Sword\JsonRpc\Message\MessageFactoryInterface;
+use Sword\JsonRpc\Message\RequestInterface;
+use Sword\JsonRpc\Message\ResponseInterface;
+use Sword\JsonRpc\Middleware\RequestFactoryMiddleware;
+use Sword\JsonRpc\Middleware\RequestHeaderMiddleware;
+use Sword\JsonRpc\Middleware\ResponseFactoryMiddleware;
+use Sword\JsonRpc\Middleware\RpcErrorMiddleware;
 use GuzzleHttp\Client as HttpClient;
 use GuzzleHttp\ClientInterface as HttpClientInterface;
 use GuzzleHttp\Promise\PromiseInterface;

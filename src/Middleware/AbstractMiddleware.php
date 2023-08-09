@@ -12,7 +12,7 @@
  * @link http://github.com/graze/guzzle-jsonrpc
  */
 
-namespace Graze\GuzzleHttp\JsonRpc\Middleware;
+namespace Sword\JsonRpc\Middleware;
 
 use Closure;
 use Psr\Http\Message\RequestInterface as HttpRequestInterface;
