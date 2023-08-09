@@ -1,25 +1,6 @@
-# [ABANDONED] Guzzle JSON-RPC
-
-[![No Maintenance Intended](http://unmaintained.tech/badge.svg)](http://unmaintained.tech/)
+# Guzzle JSON-RPC
 
 ### This is no longer supported, please consider forking this repository to make any desired changes.
-
-[![Master branch build status][ico-build]][travis]
-[![Coverage Status][ico-coverage]][coverage]
-[![Quality Score][ico-quality]][quality]
-[![Published version][ico-package]][package]
-[![PHP ~5.5][ico-engine]][lang]
-[![MIT Licensed][ico-license]][license]
-
-This library implements [JSON-RPC 2.0][jsonrpc] for the Guzzle HTTP client. We
-try to support all commonly used versions of Guzzle including:
-
-- [GuzzleHTTP 6][guzzle] on [`master`][branch-master] branch, `^3.0` releases
-- [GuzzleHTTP 5][guzzle] on [`guzzle-5`][branch-5] branch, `^2.1` releases
-- [GuzzleHTTP 4][guzzle] on [`guzzle-4`][branch-4] branch, `2.0.*` releases
-- [Guzzle 3][guzzle-3] on [`guzzle-3`][branch-3] branch, `^1.0` releases
-
-It can be installed in whichever way you prefer, but we recommend [Composer][package].
 
 ```json
 {
@@ -54,9 +35,6 @@ $client->sendAll([
 
 ### Async requests
 
-Asynchronous requests are supported by making use of the
-[Guzzle Promises][guzzle-promise] library; an implementation of
-[Promises/A+][promise].
 
 ```php
 <?php
@@ -125,31 +103,3 @@ but passing unit tests must be included before it will be considered for merge.
 
 The content of this library is released under the **MIT License** by
 **Nature Delivered Ltd**.
-
-You can find a copy of this license at
-[mit][mit] or in [`LICENSE`][license]
-
-<!-- Links -->
-[mit]: http://www.opensource.org/licenses/mit
-[travis]: https://travis-ci.org/graze/guzzle-jsonrpc
-[lang]: http://php.net
-[package]: https://packagist.org/packages/graze/guzzle-jsonrpc
-[coverage]: https://scrutinizer-ci.com/g/graze/guzzle-jsonrpc/code-structure
-[quality]: https://scrutinizer-ci.com/g/graze/guzzle-jsonrpc
-[ico-license]: http://img.shields.io/packagist/l/graze/guzzle-jsonrpc.svg?style=flat
-[ico-package]: http://img.shields.io/packagist/v/graze/guzzle-jsonrpc.svg?style=flat
-[ico-build]: http://img.shields.io/travis/graze/guzzle-jsonrpc/master.svg?style=flat
-[ico-engine]: http://img.shields.io/badge/php-~5.5-8892BF.svg?style=flat
-[ico-coverage]: https://img.shields.io/scrutinizer/coverage/g/graze/guzzle-jsonrpc.svg?style=flat
-[ico-quality]: https://img.shields.io/scrutinizer/g/graze/guzzle-jsonrpc.svg?style=flat
-[vagrant]: http://vagrantup.com
-[jsonrpc]: http://jsonrpc.org/specification
-[guzzle]: https://github.com/guzzle/guzzle
-[promise]: https://promisesaplus.com
-[guzzle-3]: https://github.com/guzzle/guzzle3
-[guzzle-promise]: https://github.com/guzzle/promises
-[branch-3]: https://github.com/graze/guzzle-jsonrpc/tree/guzzle-3
-[branch-4]: https://github.com/graze/guzzle-jsonrpc/tree/guzzle-4
-[branch-5]: https://github.com/graze/guzzle-jsonrpc/tree/guzzle-5
-[branch-master]: https://github.com/graze/guzzle-jsonrpc
-[license]: LICENSE
