@@ -28,7 +28,7 @@ class MessageFactory implements MessageFactoryInterface
      *
      * @return RequestInterface
      */
-    public function createRequest($method, $uri, array $headers = [], array $options = [])
+    public function createRequest($method, $uri, array $headers = [], array $options = []): RequestInterface
     {
         $body = Json::encode($this->addIdToRequest($method, $options));
 
