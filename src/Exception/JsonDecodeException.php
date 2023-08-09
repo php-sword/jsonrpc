@@ -14,22 +14,23 @@
 
 namespace Graze\GuzzleHttp\JsonRpc\Exception;
 
+use InvalidArgumentException;
 use Throwable;
 
-class JsonDecodeException extends \InvalidArgumentException
+class JsonDecodeException extends InvalidArgumentException
 {
     /**
      * @var string
      */
-    private $json;
+    private string $json;
 
     /**
-     * @param string        $message    The Exception message to throw
-     * @param int           $code       The Exception code
-     * @param Throwable     $previous   The previous throwable used for the exception chaining
-     * @param string        $json       The JSON data.
+     * @param string $message The Exception message to throw
+     * @param int $code The Exception code
+     * @param Throwable|null $previous The previous throwable used for the exception chaining
+     * @param string $json The JSON data.
      */
-    public function __construct($message = "", $code = 0, Throwable $previous = null, $json = "")
+    public function __construct($message = "", $code = 0, Throwable $previous = null, string $json = "")
     {
         parent::__construct($message, $code, $previous);
         $this->json = $json;
@@ -38,7 +39,7 @@ class JsonDecodeException extends \InvalidArgumentException
     /**
      * @return string
      */
-    public function getJson()
+    public function getJson(): string
     {
         return $this->json;
     }

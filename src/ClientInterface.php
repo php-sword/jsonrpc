@@ -35,12 +35,12 @@ interface ClientInterface
      *
      * @link   http://www.jsonrpc.org/specification#notification
      *
-     * @param  string           $method
+     * @param string $method
      * @param  array|null       $params
      *
      * @return RequestInterface
      */
-    public function notification($method, array $params = null);
+    public function notification(string $method, array $params = null): RequestInterface;
 
     /**
      * Build a request object.
@@ -52,12 +52,12 @@ interface ClientInterface
      * @link   http://www.jsonrpc.org/specification#request_object
      *
      * @param  mixed            $id
-     * @param  string           $method
+     * @param string $method
      * @param  array|null       $params
      *
      * @return RequestInterface
      */
-    public function request($id, $method, array $params = null);
+    public function request($id, string $method, array $params = null): RequestInterface;
 
     /**
      * Send a request.
@@ -69,7 +69,7 @@ interface ClientInterface
      *
      * @return ResponseInterface|null
      */
-    public function send(RequestInterface $request);
+    public function send(RequestInterface $request): ?ResponseInterface;
 
     /**
      * Send a request asynchronously.
@@ -81,7 +81,7 @@ interface ClientInterface
      *
      * @return PromiseInterface
      */
-    public function sendAsync(RequestInterface $request);
+    public function sendAsync(RequestInterface $request): PromiseInterface;
 
     /**
      * Send a batch of requests.
@@ -96,7 +96,7 @@ interface ClientInterface
      *
      * @return ResponseInterface[]
      */
-    public function sendAll(array $requests);
+    public function sendAll(array $requests): array;
 
     /**
      * Send an asynchronous batch of requests.
@@ -111,5 +111,5 @@ interface ClientInterface
      *
      * @return PromiseInterface
      */
-    public function sendAllAsync(array $requests);
+    public function sendAllAsync(array $requests): PromiseInterface;
 }

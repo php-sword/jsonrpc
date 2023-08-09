@@ -27,7 +27,7 @@ interface MessageFactoryInterface
      *
      * @return RequestInterface
      */
-    public function createRequest($method, $uri, array $headers = [], array $options = []);
+    public function createRequest($method, $uri, array $headers = [], array $options = []): RequestInterface;
 
     /**
      * @param int                $statusCode

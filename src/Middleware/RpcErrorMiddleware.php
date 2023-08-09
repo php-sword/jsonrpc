@@ -28,7 +28,7 @@ class RpcErrorMiddleware extends AbstractMiddleware
      *
      * @return HttpResponseInterface
      */
-    public function applyResponse(HttpRequestInterface $request, HttpResponseInterface $response, array $options)
+    public function applyResponse(HttpRequestInterface $request, HttpResponseInterface $response, array $options): HttpResponseInterface
     {
         if ($response instanceof ResponseInterface &&
             isset($options['rpc_error']) &&

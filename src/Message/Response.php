@@ -14,7 +14,7 @@
 
 namespace Graze\GuzzleHttp\JsonRpc\Message;
 
-use Graze\GuzzleHttp\JsonRpc;
+use Graze\GuzzleHttp\JsonRpc\Json;
 use GuzzleHttp\Psr7\Response as HttpResponse;
 
 class Response extends HttpResponse implements ResponseInterface
@@ -26,7 +26,7 @@ class Response extends HttpResponse implements ResponseInterface
     {
         $error = $this->getFieldFromBody('error');
 
-        return isset($error['code']) ? $error['code'] : null;
+        return $error['code'] ?? null;
     }
 
     /**
@@ -36,7 +36,7 @@ class Response extends HttpResponse implements ResponseInterface
     {
         $error = $this->getFieldFromBody('error');
 
-        return isset($error['message']) ? $error['message'] : null;
+        return $error['message'] ?? null;
     }
 
     /**
@@ -46,7 +46,7 @@ class Response extends HttpResponse implements ResponseInterface
     {
         $error = $this->getFieldFromBody('error');
 
-        return isset($error['data']) ? $error['data'] : null;
+        return $error['data'] ?? null;
     }
 
     /**
@@ -74,14 +74,14 @@ class Response extends HttpResponse implements ResponseInterface
     }
 
     /**
-     * @param  string $key
+     * @param string $key
      *
      * @return mixed
      */
-    protected function getFieldFromBody($key)
+    protected function getFieldFromBody(string $key)
     {
-        $rpc = JsonRpc\json_decode((string) $this->getBody(), true);
+        $rpc = Json::decode((string) $this->getBody(), true);
 
-        return isset($rpc[$key]) ? $rpc[$key] : null;
+        return $rpc[$key] ?? null;
     }
 }

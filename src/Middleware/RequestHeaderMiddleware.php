@@ -24,7 +24,7 @@ class RequestHeaderMiddleware extends AbstractMiddleware
      *
      * @return HttpRequestInterface
      */
-    public function applyRequest(HttpRequestInterface $request, array $options)
+    public function applyRequest(HttpRequestInterface $request, array $options): HttpRequestInterface
     {
         return $request
             ->withHeader('Accept-Encoding', 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3')

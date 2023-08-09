@@ -22,7 +22,7 @@ class RequestFactoryMiddleware extends AbstractMiddleware
     /**
      * @var MessageFactoryInterface
      */
-    protected $factory;
+    protected MessageFactoryInterface $factory;
 
     /**
      * @param MessageFactoryInterface $factory
@@ -38,7 +38,7 @@ class RequestFactoryMiddleware extends AbstractMiddleware
      *
      * @return HttpRequestInterface
      */
-    public function applyRequest(HttpRequestInterface $request, array $options)
+    public function applyRequest(HttpRequestInterface $request, array $options): HttpRequestInterface
     {
         return $this->factory->fromRequest($request);
     }

@@ -14,7 +14,6 @@
 
 namespace Graze\GuzzleHttp\JsonRpc;
 
-use Graze\GuzzleHttp\JsonRpc;
 use Graze\GuzzleHttp\JsonRpc\Message\MessageFactory;
 use Graze\GuzzleHttp\JsonRpc\Message\MessageFactoryInterface;
 use Graze\GuzzleHttp\JsonRpc\Message\RequestInterface;
@@ -32,12 +31,12 @@ class Client implements ClientInterface
     /**
      * @var HttpClientInterface
      */
-    protected $httpClient;
+    protected HttpClientInterface $httpClient;
 
     /**
      * @var MessageFactoryInterface
      */
-    protected $messageFactory;
+    protected MessageFactoryInterface $messageFactory;
 
     /**
      * @param HttpClientInterface     $httpClient
@@ -56,12 +55,12 @@ class Client implements ClientInterface
     }
 
     /**
-     * @param  string $uri
+     * @param string $uri
      * @param  array  $config
      *
      * @return Client
      */
-    public static function factory($uri, array $config = [])
+    public static function factory(string $uri, array $config = []): Client
     {
         if (isset($config['message_factory'])) {
             $factory = $config['message_factory'];
@@ -80,12 +79,12 @@ class Client implements ClientInterface
      *
      * @link   http://www.jsonrpc.org/specification#notification
      *
-     * @param  string           $method
+     * @param string $method
      * @param  array|null       $params
      *
      * @return RequestInterface
      */
-    public function notification($method, array $params = null)
+    public function notification(string $method, array $params = null): RequestInterface
     {
         return $this->createRequest(RequestInterface::NOTIFICATION, array_filter([
             'jsonrpc' => self::SPEC,
@@ -100,12 +99,12 @@ class Client implements ClientInterface
      * @link   http://www.jsonrpc.org/specification#request_object
      *
      * @param  mixed            $id
-     * @param  string           $method
+     * @param string $method
      * @param  array|null       $params
      *
      * @return RequestInterface
      */
-    public function request($id, $method, array $params = null)
+    public function request($id, string $method, array $params = null): RequestInterface
     {
         return $this->createRequest(RequestInterface::REQUEST, array_filter([
             'jsonrpc' => self::SPEC,
@@ -122,7 +121,7 @@ class Client implements ClientInterface
      *
      * @return ResponseInterface|null
      */
-    public function send(RequestInterface $request)
+    public function send(RequestInterface $request): ?ResponseInterface
     {
         $promise = $this->sendAsync($request);
 
@@ -136,7 +135,7 @@ class Client implements ClientInterface
      *
      * @return PromiseInterface
      */
-    public function sendAsync(RequestInterface $request)
+    public function sendAsync(RequestInterface $request): PromiseInterface
     {
         return $this->httpClient->sendAsync($request)->then(
             function (ResponseInterface $response) use ($request) {
@@ -154,7 +153,7 @@ class Client implements ClientInterface
      *
      * @return ResponseInterface[]
      */
-    public function sendAll(array $requests)
+    public function sendAll(array $requests): array
     {
         $promise = $this->sendAllAsync($requests);
 
@@ -170,7 +169,7 @@ class Client implements ClientInterface
      *
      * @return PromiseInterface
      */
-    public function sendAllAsync(array $requests)
+    public function sendAllAsync(array $requests): PromiseInterface
     {
         return $this->httpClient->sendAsync($this->createRequest(
             RequestInterface::BATCH,
@@ -181,16 +180,16 @@ class Client implements ClientInterface
     }
 
     /**
-     * @param  string           $method
+     * @param string $method
      * @param  array            $options
      *
      * @return RequestInterface
      */
-    protected function createRequest($method, array $options)
+    protected function createRequest(string $method, array $options): RequestInterface
     {
         $uri = $this->httpClient->getConfig('base_uri');
         $defaults = $this->httpClient->getConfig('defaults');
-        $headers = isset($defaults['headers']) ? $defaults['headers'] : [];
+        $headers = $defaults['headers'] ?? [];
 
         return $this->messageFactory->createRequest($method, $uri, $headers, $options);
     }
@@ -200,10 +199,10 @@ class Client implements ClientInterface
      *
      * @return array
      */
-    protected function getBatchRequestOptions(array $requests)
+    protected function getBatchRequestOptions(array $requests): array
     {
         return array_map(function (RequestInterface $request) {
-            return JsonRpc\json_decode((string) $request->getBody());
+            return Json::decode((string) $request->getBody());
         }, $requests);
     }
 
@@ -212,9 +211,9 @@ class Client implements ClientInterface
      *
      * @return ResponseInterface[]
      */
-    protected function getBatchResponses(ResponseInterface $response)
+    protected function getBatchResponses(ResponseInterface $response): array
     {
-        $results = JsonRpc\json_decode((string) $response->getBody(), true);
+        $results = Json::decode((string) $response->getBody(), true);
 
         return array_map(function (array $result) use ($response) {
             return $this->messageFactory->createResponse(

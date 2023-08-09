@@ -14,6 +14,7 @@
 
 namespace Graze\GuzzleHttp\JsonRpc\Middleware;
 
+use Closure;
 use Psr\Http\Message\RequestInterface as HttpRequestInterface;
 use Psr\Http\Message\ResponseInterface as HttpResponseInterface;
 
@@ -22,9 +23,9 @@ abstract class AbstractMiddleware
     /**
      * @param callable $fn
      *
-     * @return \Closure
+     * @return Closure
      */
-    public function __invoke(callable $fn)
+    public function __invoke(callable $fn): Closure
     {
         return function (HttpRequestInterface $request, array $options) use ($fn) {
             return $fn(call_user_func([$this, 'applyRequest'], $request, $options), $options)->then(
@@ -41,7 +42,7 @@ abstract class AbstractMiddleware
      *
      * @return HttpRequestInterface
      */
-    public function applyRequest(HttpRequestInterface $request, array $options)
+    public function applyRequest(HttpRequestInterface $request, array $options): HttpRequestInterface
     {
         return $request;
     }
@@ -53,7 +54,7 @@ abstract class AbstractMiddleware
      *
      * @return HttpResponseInterface
      */
-    public function applyResponse(HttpRequestInterface $request, HttpResponseInterface $response, array $options)
+    public function applyResponse(HttpRequestInterface $request, HttpResponseInterface $response, array $options): HttpResponseInterface
     {
         return $response;
     }

@@ -14,7 +14,7 @@
 
 namespace Graze\GuzzleHttp\JsonRpc\Message;
 
-use Graze\GuzzleHttp\JsonRpc;
+use Graze\GuzzleHttp\JsonRpc\Json;
 use Psr\Http\Message\RequestInterface as HttpRequestInterface;
 use Psr\Http\Message\ResponseInterface as HttpResponseInterface;
 
@@ -30,7 +30,7 @@ class MessageFactory implements MessageFactoryInterface
      */
     public function createRequest($method, $uri, array $headers = [], array $options = [])
     {
-        $body = JsonRpc\json_encode($this->addIdToRequest($method, $options));
+        $body = Json::encode($this->addIdToRequest($method, $options));
 
         return new Request('POST', $uri, $headers, $body === false ? null : $body);
     }
@@ -44,7 +44,7 @@ class MessageFactory implements MessageFactoryInterface
      */
     public function createResponse($statusCode, array $headers = [], array $options = [])
     {
-        $body = JsonRpc\json_encode($options);
+        $body = Json::encode($options);
 
         return new Response($statusCode, $headers, $body === false ? null : $body);
     }
@@ -60,7 +60,7 @@ class MessageFactory implements MessageFactoryInterface
             $request->getMethod(),
             $request->getUri(),
             $request->getHeaders(),
-            JsonRpc\json_decode((string) $request->getBody(), true) ?: []
+            Json::decode((string) $request->getBody(), true) ?: []
         );
     }
 
@@ -74,17 +74,17 @@ class MessageFactory implements MessageFactoryInterface
         return $this->createResponse(
             $response->getStatusCode(),
             $response->getHeaders(),
-            JsonRpc\json_decode((string) $response->getBody(), true) ?: []
+            Json::decode((string) $response->getBody(), true) ?: []
         );
     }
 
     /**
-     * @param  string $method
+     * @param string $method
      * @param  array  $data
      *
      * @return array
      */
-    protected function addIdToRequest($method, array $data)
+    protected function addIdToRequest(string $method, array $data): array
     {
         if (RequestInterface::REQUEST === $method && ! isset($data['id'])) {
             $data['id'] = uniqid(true);
